@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Art/Art.png" type="Texture" id=2]
@@ -116,6 +116,36 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 2 ]
 }
 
+[sub_resource type="Animation" id=16]
+resource_name = "Walljump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Walljump2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 24.0
 height = 64.0
@@ -172,6 +202,8 @@ anims/Sliding = SubResource( 6 )
 anims/Sprinting = SubResource( 11 )
 anims/WALLSLIDE = SubResource( 15 )
 anims/Walking = SubResource( 5 )
+anims/Walljump = SubResource( 16 )
+anims/Walljump2 = SubResource( 17 )
 
 [node name="Sliding Collision" type="CollisionShape2D" parent="KinematicBody2D"]
 position = Vector2( -40, 56 )
@@ -215,5 +247,18 @@ scale = Vector2( 1, 5.125 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -216, -116 )
+shape = SubResource( 10 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 504, -48 )
+
+[node name="Sprite2" type="Sprite" parent="StaticBody2D3"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -216, -116 )
+scale = Vector2( 1, 5.125 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2( -216, -116 )
 shape = SubResource( 10 )

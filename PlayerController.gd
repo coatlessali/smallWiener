@@ -47,7 +47,7 @@ func updateTapBuffer():
 	tap_check = 0
 
 func update_animation():
-	print(get_dir())
+	#print(get_dir())
 	#print($Sprite.get_frame())
 	var fadeCounter = 0
 	$Trail.local_coords = false
@@ -67,35 +67,46 @@ func update_animation():
 	else:
 		$Trail.emitting = false
 		fadeCounter = 0
-	if velocity.x < 0.2 and Input.is_action_pressed("ui_left"):
-		$Sprite.flip_h = true
-	elif velocity.x > 0.2 and Input.is_action_pressed("ui_right"):
-		$Sprite.flip_h = false
+	if player_state != state.WALLJUMP:
+		if velocity.x < 0.2 and Input.is_action_pressed("ui_left"):
+			$Sprite.flip_h = true
+		elif velocity.x > 0.2 and Input.is_action_pressed("ui_right"):
+			$Sprite.flip_h = false
+	else:
+		$Sprite.flip_h = true if velocity.x < 0 else false
 	match(player_state):
 		state.IDLE:
-			print("IDLE")
+			#print("IDLE")
 			$AnimationPlayer.play("Idle")
 		state.WALKING:
-			print("WALKING")
+			#print("WALKING")
 			$AnimationPlayer.play("Walking")
 			yield($AnimationPlayer,"animation_finished")
 			if player_state == state.WALKING:
 				player_state = state.IDLE
 		state.ROLLING:
-			print("ROLLING")
+			#print("ROLLING")
 			$AnimationPlayer.play("Sliding")
 		state.SPRINTING:
-			print("SPRINTING")
+			#print("SPRINTING")
 			$AnimationPlayer.play("Sprinting")
 		state.FALL:
-			print("FALLING")
+			#print("FALLING")
 			$AnimationPlayer.play("Falling")
 		state.JUMP:
-			print("JUMPING")
+			#print("JUMPING")
 			$AnimationPlayer.play("Falling")
 		state.WALLSLIDE:
-			print("WALLSLIDE")
+			#print("WALLSLIDE")
 			$AnimationPlayer.play("WALLSLIDE")
+		state.WALLJUMP:
+			#print("WALLJUMP")
+			if velocity.x > 0:
+				$AnimationPlayer.play("Walljump")
+			elif velocity.x < 0:
+				$AnimationPlayer.play("Walljump2")
+			else:
+				$AnimationPlayer.play("WALLSLIDE")
 			
 	
 func _process(delta):
@@ -125,7 +136,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	#print(player_state)
-	if player_state != state.ROLLING and player_state != state.ATTACK:
+	if player_state != state.ROLLING and player_state != state.ATTACK and player_state != state.WALLJUMP:
 		get_input()
 		updateTapBuffer()
 		#print(tap_buffer)
@@ -176,25 +187,33 @@ func _physics_process(delta):
 				player_state = state.IDLE
 		velocity.x = lerp(velocity.x, 0, friction)
 		#print(velocity)
+	elif player_state == state.WALLJUMP:
+		velocity.x = lerp(velocity.x, 0, friction/32)
+		pass
 	if not is_on_floor():
 		landed = false
 		if is_on_wall():
-			if Input.get_action_strength("ui_left") + Input.get_action_strength("ui_right") != 0:
-				player_state = state.WALLSLIDE
-				if Input.is_action_just_pressed("ui_up"):
-					velocity.y = jump_speed*0.8
-					var dir
-					dir = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
-					velocity.x = sign(dir) * speed * 2
-					#velocity.x = mult * (speed*2)
-					player_state = state.WALLJUMP
+			#if Input.get_action_strength("ui_left") + Input.get_action_strength("ui_right") != 0:
+			player_state = state.WALLSLIDE
+			if Input.is_action_just_pressed("ui_up"):
+				velocity.y = jump_speed*0.8
+				#var dir # We no longer require input left or right to enter WALLSLIDE
+				#dir = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
+				var uhh
+				uhh = -1 if $Sprite.flip_h == false else 1
+				print(uhh)
+				velocity.x = sign(uhh) * speed * 1.75
+				#velocity.x = mult * (speed*2)
+				player_state = state.WALLJUMP
 		else:
 			if velocity.y < 0:
-				player_state = state.JUMP
-				if Input.is_action_just_released("ui_up"):
-					velocity.y /= 2
+				if player_state != state.WALLJUMP:
+					player_state = state.JUMP
+					if Input.is_action_just_released("ui_up"):
+						velocity.y /= 2
 			else:
 				player_state = state.FALL
+	print(is_on_wall())
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	update_animation()
