@@ -200,7 +200,7 @@ func _physics_process(delta):
 				#var dir # We no longer require input left or right to enter WALLSLIDE
 				#dir = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
 				var uhh
-				uhh = -1 if $Sprite.flip_h == false else 1
+				uhh = -1 if $Sprite.flip_h == false else 1 # New method to figure out which way we need to jump off a wall
 				print(uhh)
 				velocity.x = sign(uhh) * speed * 1.75
 				#velocity.x = mult * (speed*2)
