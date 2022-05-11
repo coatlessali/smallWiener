@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Art/Art.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/TapBuffer.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=7]
 resource_name = "Falling"
@@ -223,6 +224,9 @@ amount = 5
 lifetime = 0.5
 speed_scale = 2.0
 process_material = SubResource( 14 )
+
+[node name="TapBuffer" type="Node" parent="Player"]
+script = ExtResource( 4 )
 
 [node name="Terrain1" type="StaticBody2D" parent="."]
 position = Vector2( 2, 142 )

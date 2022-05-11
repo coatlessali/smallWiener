@@ -12,9 +12,6 @@ export (float,0,1.0) var acceleration = 0.3
 var fade = Sprite.new()
 
 enum state {SPRINTING, WALKING, IDLE, JUMP, FALL, ROLLING, ATTACK, CROUCH, LONGJUMP, WALLSLIDE, WALLJUMP}
-enum inputs {UP, DOWN, LEFT, RIGHT, NONE}
-var tap_buffer = [inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE, inputs.NONE]
-var tap_check = 0
 var landed : bool
 
 var player_state = state.IDLE
@@ -29,22 +26,6 @@ func get_input():
 		velocity.x = lerp(velocity.x, dir * speed, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
-
-func updateTapBuffer():
-	while tap_check < 9:
-		tap_buffer[tap_check] = tap_buffer[tap_check+1]
-		tap_check += 1
-	if Input.is_action_just_pressed("ui_up"):
-		tap_buffer[9] = inputs.UP
-	elif Input.is_action_just_pressed("ui_down"):
-		tap_buffer[9] = inputs.DOWN
-	elif Input.is_action_just_pressed("ui_left"):
-		tap_buffer[9] = inputs.LEFT
-	elif Input.is_action_just_pressed("ui_right"):
-		tap_buffer[9] = inputs.RIGHT
-	else:
-		tap_buffer[9] = inputs.NONE
-	tap_check = 0
 
 func update_animation():
 	#print(get_dir())
@@ -138,8 +119,6 @@ func _physics_process(delta):
 	#print(player_state)
 	if player_state != state.ROLLING and player_state != state.ATTACK and player_state != state.WALLJUMP:
 		get_input()
-		updateTapBuffer()
-		#print(tap_buffer)
 		#print(velocity)
 		if -20 <= velocity.x and velocity.x <= 20:
 			velocity.x = 0
@@ -167,10 +146,10 @@ func _physics_process(delta):
 				velocity.y = jump_speed
 				player_state = state.JUMP
 			if Input.is_action_just_pressed("ui_right"):
-				if tap_buffer.count(inputs.RIGHT) >= 2:
+				if $TapBuffer.check("ui_right", 10):
 					player_state = state.SPRINTING
 			elif Input.is_action_just_pressed("ui_left"):
-				if tap_buffer.count(inputs.LEFT) >= 2:
+				if $TapBuffer.check("ui_left", 10):
 					player_state = state.SPRINTING
 	elif player_state == state.ROLLING: # What to do when we're sliding
 		if -30 < velocity.x and velocity.x < 30: # What to do at the end of the slide
