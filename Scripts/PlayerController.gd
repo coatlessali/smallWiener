@@ -77,49 +77,49 @@ func update_animation():
 	match(player_state):
 		state.IDLE:
 			#print("IDLE")
-			$AnimationPlayer.play("Idle")
+			$Animation.play("Idle")
 		state.WALKING:
 			#print("WALKING")
-			$AnimationPlayer.play("Walking")
-			yield($AnimationPlayer,"animation_finished")
+			$Animation.play("Walking")
+			yield($Animation,"animation_finished")
 			if player_state == state.WALKING:
 				player_state = state.IDLE
 		state.ROLLING:
 			#print("ROLLING")
-			$AnimationPlayer.play("Sliding")
+			$Animation.play("Sliding")
 		state.SPRINTING:
 			#print("SPRINTING")
-			$AnimationPlayer.play("Sprinting")
+			$Animation.play("Sprinting")
 		state.FALL:
 			#print("FALLING")
-			$AnimationPlayer.play("Falling")
+			$Animation.play("Falling")
 		state.JUMP:
 			#print("JUMPING")
-			$AnimationPlayer.play("Falling")
+			$Animation.play("Falling")
 		state.WALLSLIDE:
 			#print("WALLSLIDE")
-			$AnimationPlayer.play("WALLSLIDE")
+			$Animation.play("WALLSLIDE")
 		state.WALLJUMP:
 			#print("WALLJUMP")
 			if velocity.x > 0:
-				$AnimationPlayer.play("Walljump")
+				$Animation.play("Walljump")
 			elif velocity.x < 0:
-				$AnimationPlayer.play("Walljump2")
+				$Animation.play("Walljump2")
 			else:
-				$AnimationPlayer.play("WALLSLIDE")
+				$Animation.play("WALLSLIDE")
 			
 	
 func _process(delta):
 	if player_state == state.ROLLING:
-		$"Standing Collision".disabled = true
-		$"Sliding Collision".disabled = false
+		$CollisionStanding.disabled = true
+		$CollisionSliding.disabled = false
 		if Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") != 0:
 			friction = 0.01
 		else:
 			friction = 0.035
 	else:
-		$"Sliding Collision".disabled = true
-		$"Standing Collision".disabled = false
+		$CollisionSliding.disabled = true
+		$CollisionStanding.disabled = false
 		friction = 0.6
 	if player_state == state.JUMP or player_state == state.FALL:
 		# Put some code here to implement friction on turnaround
