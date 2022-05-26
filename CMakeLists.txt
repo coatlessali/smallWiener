@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.9.0)
 project(smallWiener LANGUAGES CXX VERSION 1.0.0)
+
+option(SMALLWIENER_USE_SUBMODULE_GODOTCPP "Whether to use godot-cpp through the submodule." ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/BuildScripts)
 

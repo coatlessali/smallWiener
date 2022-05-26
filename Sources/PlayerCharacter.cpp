@@ -206,7 +206,7 @@ void PlayerCharacter::_physics_process(const float delta)
             (this->input->is_action_just_pressed("ui_left")  && this->tap_buffer->check(TapBufferState_Left, 10)))
         {
             this->state = PlayerCharacterState::Sprinting;
-            __debugbreak();
+            WARN_PRINT("TAP BUFFER HIT"); // TODO: remove this once the buffer works properly
         }
 
         break;
