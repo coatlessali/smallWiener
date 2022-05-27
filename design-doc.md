@@ -24,13 +24,43 @@ For the sake of avoiding confusion, we will be using the PlayStation button name
 | ------------ | ---------------------------------------------------------------- |
 | Up           | Look Up / Angle Attacks Upward / Climb Ladders / Enter Rooms (?) |
 | Down         | Crouch / Slide / Drop Through Platforms / Fast Fall              |
-| Left / Right | Walk / Run (Double Tap)                                          |
+| Left / Right | Run                                                              |
 | Cross        | Jump / Recover / Walljump                                        |
 | Square       | Attack / Recover / Parry (Press Forward)                         |
 | Triangle     | Special Action / Grab / Grappling Hook (?)                       |
 | Circle       | Interact                                                         |
-| R1           | Dodge / Block (?)                                                |
-| R2           | Lock On to Opponent                                              |
+| R1           | Lock Onto Opponent                                               |
 | L1           | Time Cancel (Cancels any attack on hit, and any other anim.)     |
 
+While Locked On:
+
+* ! = Does nothing
+
+| Button       | Result                                                           |
+| ------------ | ---------------------------------------------------------------- |
+| Down         | Crouch                                                           |
+| Left / Right | Walk / Run (Double Tap)                                          |
+| Cross        | Dodge (Hold Forward) / Backflip (Hold Back) / Jump               |
+
+While In Air:
+
+* ! = Does Nothing
+
+| Button       | Result                                                           |
+| ------------ | ---------------------------------------------------------------- |
+| Down         | Fast Fall / Angle Attack Downwards                               |
+| Cross        | Double Jump (IF UNLOCKED)                                        |
+| Square       | Attack / Parry (IF UNLOCKED)                                     |
+
 (TODO: Simplify these mechanical ideas.)
+
+### UNLOCKABLE ABILITIES
+
+| Upgrade      | Description |
+| - | - |
+| Air Parry | Allows parrying in the air. |
+| Reflector Blade | Allows reflecting light projectiles with a sword swing. |
+
+### ATTACK GATLING
+
+wip
