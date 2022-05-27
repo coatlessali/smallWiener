@@ -1,0 +1,12 @@
+[configuration]
+
+entry_symbol = "smallWiener_startup"
+
+[libraries]
+
+linux.64.debug = "libsmallWiener.debug.so"
+linux.64.release = "libsmallWiener.release.so"
+windows.64.debug = "smallWiener.debug.dll"
+windows.64.release = "smallWiener.release.dll"
+macos.debug = "libsmallWiener.debug.dylib"
+macos.release = "libsmallWiener.release.dylib"

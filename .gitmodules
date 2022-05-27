@@ -1,0 +1,4 @@
+[submodule "ThirdParty/godot-cpp"]
+	path = ThirdParty/godot-cpp
+	url = https://github.com/godotengine/godot-cpp
+	branch = 3.4

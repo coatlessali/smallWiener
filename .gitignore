@@ -1,7 +1,11 @@
-# Import cache
-.import/
+.import
+.cache
+.vscode
+build
 
-# Binaries
-bin/
-build/
-lib/
+/*.dll
+/*.pdb
+/*.dylib
+/*.so
+
+export_presets.cfg
