@@ -1,10 +1,7 @@
 # SMALL WIENER
 yes we're sticking with this
 
-## Game Mechanics
-SW will have quite a few delicious gameplay mechanics. The goal is to make a very fluid combat exploration experience.
-
-### Overview
+## Overview
 SW is planned to be a 2D Sidescrolling Metroidvania with a deep and intricate combat system that aims to be intuitive without being limiting. The idea is to maximize the distance between the skill ceiling and the skill floor, without compromising on either.
 
 ### CONTROLS
@@ -49,8 +46,9 @@ While In Air:
 | Button       | Result                                                           |
 | ------------ | ---------------------------------------------------------------- |
 | Down         | Fast Fall / Angle Attack Downwards                               |
-| Cross        | Double Jump (IF UNLOCKED)                                        |
+| Cross        | Double Jump (IF UNLOCKED) (CANDIDATE FOR REMOVAL)                |
 | Square       | Attack / Parry (IF UNLOCKED)                                     |
+| Circle       | Air Dash (IF UNLOCKED)                                           |
 
 (TODO: Simplify these mechanical ideas.)
 
@@ -60,7 +58,50 @@ While In Air:
 | - | - |
 | Air Parry | Allows parrying in the air. |
 | Reflector Blade | Allows reflecting light projectiles with a sword swing. |
+| Thrust Boots | Allows dashing in the air by either double tapping a direction or tapping Circle. |
+| Magnetic Boots | Lets certain mid-air actions snap the player to the ground or edges. |
 
-### ATTACK GATLING
+### LEVELING UP
 
-wip
+When Art defeats enemies, they drop EXP. After gaining a certain amount of EXP, the player can allocate 1 point to any of the following stats, which begin at 1 and end at 5:
+CANDIDATE FOR REMOVAL.
+
+Agility (AGI) - Increases movement speed.
+Dexterity (DEX) - Increases attack speed.
+Strength (STR) - Increases attack strength.
+Vitality (VIT) - Increases available HP.
+Defense (DEF) - Decreases damage taken.
+
+## MECHANICS IN-DEPTH
+
+### ATTACKING
+
+When the player attacks, there are a few phases to an attack:
+
+* The startup.
+* The moment the hitbox comes out.
+* Optionally the connection. -> Start of another attack. / Blockstun.
+* The recovery.
+
+In the startup phase, the player is kept still and options are limited heavily. At the very beginning, in the case of an accidental input, the player can cancel the attack with a jump/roll/backflip.
+
+In the hitbox phase, the hitbox appears and if it connects with something, a few things can happen:
+
+* If the opponent blocks, the player is knocked back slightly and they enter the blockstun phase, where they can either wait out the recovery period, parry, or roll.
+
+* Alternatively (not sure), the block simply does its job and the stun phase only happens if the opponent counter attacks as to not break pacing. This means on block, the player can still use gatling options.
+
+* If the hit connects, the player can cancel it into another attack, which is called a gatling option.
+
+In the recovery phase, the player cannot act during the cooldown outside of cancelling into a gatling option, and will receive more damage.
+
+All of these phases can be Time Cancelled for a certain amount of meter. (Yes, even the startup phase, there's a reason that comes later.)
+
+WIP:
+
+| Phase    | Meter | Extra Effect |
+| -------- | ----- | ------------ |
+| Startup  | 25%   | None         |
+| Hitbox   | 50%   | None         |
+| Connect  | 50%   | None         |
+| Recovery | 25%   | None         |
