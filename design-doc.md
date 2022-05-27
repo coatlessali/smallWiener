@@ -120,7 +120,7 @@ If the player gets hit, they will enter hitstun, where their only options are to
 
 WIP
 
-# PROJECTILE ATTACKS
+### PROJECTILE ATTACKS
 
 There are two types of projectiles:
 
