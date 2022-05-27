@@ -1,5 +1,5 @@
 # SMALL WIENER
-yes we're sticking with this
+short, but hard af
 
 ## Overview
 SW is planned to be a 2D Sidescrolling Metroidvania with a deep and intricate combat system that aims to be intuitive without being limiting. The idea is to maximize the distance between the skill ceiling and the skill floor, without compromising on either.
@@ -54,12 +54,12 @@ While In Air:
 
 ### UNLOCKABLE ABILITIES
 
-| Upgrade      | Description |
-| - | - |
-| Air Parry | Allows parrying in the air. |
-| Reflector Blade | Allows reflecting light projectiles with a sword swing. |
-| Thrust Boots | Allows dashing in the air by either double tapping a direction or tapping Circle. |
-| Magnetic Boots | Lets certain mid-air actions snap the player to the ground or edges. |
+| Upgrade         | Description                                                                       |
+| --------------- | --------------------------------------------------------------------------------- |
+| Air Parry       | Allows parrying in the air.                                                       |
+| Reflector Blade | Allows reflecting light projectiles with a sword swing.                           |
+| Thrust Boots    | Allows dashing in the air by either double tapping a direction or tapping Circle. |
+| Magnetic Boots  | Lets certain mid-air actions snap the player to the ground or edges.              |
 
 ### LEVELING UP
 
@@ -93,7 +93,7 @@ In the hitbox phase, the hitbox appears and if it connects with something, a few
 
 * If the hit connects, the player can cancel it into another attack, which is called a gatling option.
 
-In the recovery phase, the player cannot act during the cooldown outside of cancelling into a gatling option, and will receive more damage.
+In the recovery phase, the player cannot act during the cooldown outside of cancelling into a gatling option, and will receive more damage than normal if hit.
 
 All of these phases can be Time Cancelled for a certain amount of meter. (Yes, even the startup phase, there's a reason that comes later.)
 
@@ -105,3 +105,35 @@ WIP:
 | Hitbox   | 50%   | None         |
 | Connect  | 50%   | None         |
 | Recovery | 25%   | None         |
+
+### DEFENSIVE OPTIONS
+
+When the player is attacked, there are a few options to allow the player to avoid taking damage:
+* Parry - Press forward and attack together to block the oncoming attack.
+* Perfect Parry - Parry with perfect timing to gain 50% meter instantly.
+* Counterattack - Press attack again after parrying to use a counterattack at the cost of 50% meter.
+* Roll - While targeting an enemy, press jump while holding left or right to move out of the way.
+
+If the player gets hit, they will enter hitstun, where their only options are to parry or time cancel. This is a special type of TC that requires 100% meter.
+
+### PHYSICAL ATTACKS
+
+WIP
+
+# PROJECTILE ATTACKS
+
+There are two types of projectiles:
+
+* Light Projectiles
+* Heavy Projectiles
+
+Light projectiles:
+* Can be run through or slid through.
+* Cannot harm the player while in blockstun or hitbox phase.
+* Cannot be parried.
+* Will be interrupted by physical attacks.
+
+Heavy projectiles:
+* Cannot be run through or slid through.
+* Harms the player unless they parry or reflect.
+* Can be interrupted by a parry.
