@@ -30,6 +30,7 @@ For the sake of avoiding confusion, we will be using the PlayStation button name
 | Triangle     | Special Action / Grab / Grappling Hook (?)                       |
 | Circle       | Interact                                                         |
 | R1           | Dodge / Block (?)                                                |
+| R2           | Lock On to Opponent                                              |
 | L1           | Time Cancel (Cancels any attack on hit, and any other anim.)     |
 
 (TODO: Simplify these mechanical ideas.)
