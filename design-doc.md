@@ -29,5 +29,7 @@ For the sake of avoiding confusion, we will be using the PlayStation button name
 | Square       | Attack / Recover / Parry (Press Forward)                         |
 | Triangle     | Special Action / Grab / Grappling Hook (?)                       |
 | Circle       | Interact                                                         |
-| R1           | Dodge                                                            |
+| R1           | Dodge / Block (?)                                                |
 | L1           | Time Cancel (Cancels any attack on hit, and any other anim.)     |
+
+(TODO: Simplify these mechanical ideas.)
